@@ -14,8 +14,10 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   SearchModel searchModel = SearchModel(userSearched: "testing...");
+  String _username = "";
 
   void searchUser() {
+    searchModel = SearchModel(userSearched: _username);
     context.go("/search/user", extra: searchModel);
   }
 
@@ -25,7 +27,15 @@ class _SearchPageState extends State<SearchPage> {
         title: AppLabels.searchPageTitle,
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              TextField(
+                onChanged: (value) {
+                  print(value);
+                  _username = value;
+                },
+              ),
               ElevatedButton(
                   onPressed: () {
                     searchUser();
