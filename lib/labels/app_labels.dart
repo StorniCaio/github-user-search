@@ -16,4 +16,6 @@ class AppLabels {
   static String repoText = "Repo Numbers";
   static String followers = "Followers Numbers";
   static String location = "Location";
+
+  static String noUserFound = "No Users Found";
 }
