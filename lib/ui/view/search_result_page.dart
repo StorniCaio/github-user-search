@@ -40,7 +40,45 @@ class _SearchResultPageState extends State<SearchResultPage> {
                 return ListView.builder(
                     itemCount: users.length,
                     itemBuilder: (context, index) {
-                      return Text(users.elementAt(index).login);
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
+                        child: Card(
+                          elevation: 5.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 55.0,
+                                  height: 55.0,
+                                  child: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        users.elementAt(index).avatarUrl ?? ""),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      users.elementAt(index).login,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
                     });
               },
             ),
