@@ -18,4 +18,6 @@ class AppLabels {
   static String location = "Location";
 
   static String noUserFound = "No Users Found";
+
+  static String noHistory = "No History";
 }
