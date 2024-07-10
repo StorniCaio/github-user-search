@@ -28,11 +28,16 @@ class _HistoryPageState extends State<HistoryPage> {
                 itemBuilder: (BuildContext context, int index) {
                   //index for decreasing order
                   var i = history.length - 1 - index;
-                  return test(history, i);
+                  return element(history, i);
                 }));
   }
 
-  test(List<HistoryModel> history, int i) {
+  element(List<HistoryModel> history, int i) {
+    bool hasFilter = history.elementAt(i).filter?.followers != null ||
+        history.elementAt(i).filter?.language != null ||
+        history.elementAt(i).filter?.location != null ||
+        history.elementAt(i).filter?.repos != null;
+
     return Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
@@ -47,7 +52,8 @@ class _HistoryPageState extends State<HistoryPage> {
             child: Column(
               children: [
                 ListTile(
-                  title: Text(history.elementAt(i).usernameSearched ?? ""),
+                  title: Text(
+                      "${history.elementAt(i).usernameSearched ?? ""}${hasFilter ? " (${AppLabels.fitered})" : ""}"),
                   subtitle: Text(DateFormat("yyyy-MM-dd HH:mm:ss")
                       .format(history.elementAt(i).datetime)),
                   trailing: IconButton(

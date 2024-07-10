@@ -20,4 +20,5 @@ class AppLabels {
   static String noUserFound = "No Users Found";
 
   static String noHistory = "No History";
+  static String fitered = "Filtered";
 }
