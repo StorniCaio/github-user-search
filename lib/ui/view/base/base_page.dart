@@ -13,7 +13,7 @@ class BasePage extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             title,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: ThemeController.instance.darkTheme
               ? Colors.black54
