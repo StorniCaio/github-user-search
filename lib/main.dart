@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:github_user_search/routes/app_route.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/services/context_service.dart';
+import 'package:github_user_search/ui/controller/theme_controller.dart';
+import 'package:github_user_search/ui/view/base/root_page.dart';
 
 void main() {
-  usePathUrlStrategy();
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  HistoryRepository.instance.refreshHistoricFromStorage();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: goRouter,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primarySwatch: Colors.amber,
-          useMaterial3: true,
-          brightness: Brightness.dark),
-    );
+    return AnimatedBuilder(
+        animation: ThemeController.instance,
+        builder: (context, child) {
+          return MaterialApp(
+            navigatorKey: GlobalContextService.navigatorKey,
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.amber,
+              useMaterial3: true,
+              brightness: ThemeController.instance.darkTheme
+                  ? Brightness.dark
+                  : Brightness.light,
+            ),
+            home: RootPage(),
+          );
+        });
   }
 }

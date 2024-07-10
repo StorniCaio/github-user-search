@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:github_user_search/labels/app_labels.dart';
 import 'package:github_user_search/models/search_model.dart';
+import 'package:github_user_search/models/search_result.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
+import 'package:github_user_search/ui/view/search_result_page.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key, required this.searchResultPath});
-  final String searchResultPath;
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -18,7 +19,12 @@ class _SearchPageState extends State<SearchPage> {
 
   void searchUser() {
     searchModel = SearchModel(userSearched: _username);
-    context.go("/search/user", extra: searchModel);
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => SearchResultPage(
+                  searchModel: searchModel,
+                )));
   }
 
   @override
