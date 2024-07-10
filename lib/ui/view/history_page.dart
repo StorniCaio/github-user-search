@@ -5,6 +5,7 @@ import 'package:github_user_search/models/search_model.dart';
 import 'package:github_user_search/repositories/history_repository.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/view/search_result_page.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -47,7 +48,8 @@ class _HistoryPageState extends State<HistoryPage> {
               children: [
                 ListTile(
                   title: Text(history.elementAt(i).usernameSearched ?? ""),
-                  subtitle: Text(history.elementAt(i).datetime.toString()),
+                  subtitle: Text(DateFormat("yyyy-MM-dd HH:mm:ss")
+                      .format(history.elementAt(i).datetime)),
                   trailing: IconButton(
                       onPressed: () {
                         var searchModel = SearchModel(
@@ -65,9 +67,6 @@ class _HistoryPageState extends State<HistoryPage> {
                         });
                       },
                       icon: const Icon(Icons.search)),
-                ),
-                const Divider(
-                  height: 2.0,
                 ),
               ],
             ),
