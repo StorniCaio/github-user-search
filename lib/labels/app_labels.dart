@@ -1,23 +1,23 @@
 class AppLabels {
-  static String searchButton = "Search";
-  static String historyButton = "History";
-  static String searchPageTitle = "Search GitHub User";
-  static String historyPageTitle = "Search History";
+  static const String searchButton = "Search";
+  static const String historyButton = "History";
+  static const String searchPageTitle = "Search GitHub User";
+  static const String historyPageTitle = "Search History";
 
-  static String clearFilter = "Clear filter";
+  static const String clearFilter = "Clear filter";
 
   static String searchResulTitle(String string) => "Result for \"$string\"";
-  static String searchLabel = "Enter a GitHub Username";
-  static String searchbutton = "Search User";
+  static const String searchLabel = "Enter a GitHub Username";
+  static const String searchbutton = "Search User";
 
   //filter
-  static String filterButtom = "Filter";
-  static String languageText = "Repo Language";
-  static String repoText = "Repo Numbers";
-  static String followers = "Followers Numbers";
-  static String location = "Location";
+  static const String filterButtom = "Filter";
+  static const String languageText = "Repo Language";
+  static const String repoText = "Repo Numbers";
+  static const String followers = "Followers Numbers";
+  static const String location = "Location";
 
-  static String noUserFound = "No Users Found";
+  static const String noUserFound = "No Users Found";
 
   static String noHistory = "No History";
   static String fitered = "Filtered";

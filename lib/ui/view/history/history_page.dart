@@ -4,7 +4,8 @@ import 'package:github_user_search/models/history_model.dart';
 import 'package:github_user_search/models/search_model.dart';
 import 'package:github_user_search/repositories/history_repository.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
-import 'package:github_user_search/ui/view/search_result_page.dart';
+import 'package:github_user_search/ui/view/history/nohistory_.dart';
+import 'package:github_user_search/ui/view/search/search_result_page.dart';
 import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HistoryPageState extends State<HistoryPage> {
     return BasePage(
         title: AppLabels.historyPageTitle,
         body: history.isEmpty
-            ? noHistory()
+            ? const NoHistoryPage()
             : ListView.builder(
                 itemCount: history.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -78,39 +79,5 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ),
         ));
-  }
-
-  noHistory() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      padding: const EdgeInsets.fromLTRB(5, 2, 5, 2),
-      child: Card(
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
-        ),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Center(
-                  child: Text(
-                    AppLabels.noHistory,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

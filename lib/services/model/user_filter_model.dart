@@ -26,4 +26,16 @@ class UserFilterModel {
     data['repos'] = repos;
     return data;
   }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
+  bool hasFilter() {
+    return location != null ||
+        language != null ||
+        repos != null ||
+        followers != null;
+  }
 }

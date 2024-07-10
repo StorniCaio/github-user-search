@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_user_search/labels/app_labels.dart';
 import 'package:github_user_search/models/search_model.dart';
-import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/repositories/user_repository.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/controller/controller_state_enum.dart';
 import 'package:github_user_search/ui/controller/search_controller.dart';
@@ -27,8 +27,9 @@ class _SearchResultPageState extends State<SearchResultPage> {
         title: AppLabels.searchResulTitle(widget.searchModel.userSearched),
         body: Center(
           child: ChangeNotifierProvider<SearchUserController>(
-            create: (context) =>
-                SearchUserController()..seachUsername(widget.searchModel),
+            create: (context) => SearchUserController(
+                userRepository: context.read<IUserRepository>())
+              ..seachUsername(widget.searchModel),
             child: Consumer<SearchUserController>(
               builder: (context, controller, child) {
                 if (controller.state == ControllerState.processing) {
@@ -102,7 +103,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
         child: Container(
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -110,7 +111,7 @@ class _SearchResultPageState extends State<SearchResultPage> {
                 child: Center(
                   child: Text(
                     AppLabels.noUserFound,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
