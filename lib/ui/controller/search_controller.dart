@@ -6,10 +6,12 @@ import 'package:github_user_search/repositories/user_repository.dart';
 import 'package:github_user_search/ui/controller/controller_state_enum.dart';
 
 class SearchUserController extends ChangeNotifier {
-  UserRepository userRepository = UserRepository();
+  final IUserRepository userRepository;
   HistoryRepository historyRepository = HistoryRepository.instance;
   late SearchResult searchResult;
   ControllerState state = ControllerState.processing;
+
+  SearchUserController({required this.userRepository});
 
   Future<void> seachUsername(SearchModel searchModel) async {
     state = ControllerState.processing;

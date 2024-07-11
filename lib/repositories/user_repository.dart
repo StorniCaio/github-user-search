@@ -4,10 +4,20 @@ import 'package:github_user_search/services/github_client_service.dart';
 import 'package:github_user_search/services/model/result_model.dart';
 import 'package:github_user_search/services/model/user_filter_model.dart';
 
-class UserRepository {
+abstract class IUserRepository {
   late List<UserModel> users;
-  final githubService = GitHubClientService();
 
+  Future<Result> searchUser(String username, [UserFilterModel? filter]);
+}
+
+class UserRepository implements IUserRepository {
+  @override
+  late List<UserModel> users;
+  final IGitHubClientService githubService;
+
+  UserRepository({required this.githubService});
+
+  @override
   Future<Result> searchUser(String username, [UserFilterModel? filter]) async {
     debugPrint("state: repository");
     Result result = Result(status: false);

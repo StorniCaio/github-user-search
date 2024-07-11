@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:github_user_search/services/model/result_model.dart';
 import 'package:github_user_search/services/model/user_filter_model.dart';
 
-class GitHubClientService {
+abstract class IGitHubClientService {
+  Future<Result> genericHttpGet(
+      {required String path, Map<String, String>? queryParameters});
+  Future<Result> searchUsername(String username, [UserFilterModel? filter]);
+}
+
+class GitHubClientService implements IGitHubClientService {
   Dio dio = Dio();
   static String baseEndpoint = "api.github.com";
 
+  @override
   Future<Result> genericHttpGet(
       {required String path, Map<String, String>? queryParameters}) async {
     debugPrint("state: services");
@@ -17,17 +24,16 @@ class GitHubClientService {
     try {
       final response = await dio.get('https://api.github.com/$path',
           queryParameters: queryParameters ?? {});
-      print(response.realUri);
       return Result(
           status: response.statusCode == 200 ? true : false,
           code: response.statusCode,
           body: response.data);
     } on DioException catch (e) {
-      print(e);
       return Result(status: false, code: e.response?.statusCode);
     }
   }
 
+  @override
   Future<Result> searchUsername(String username,
       [UserFilterModel? filter]) async {
     return await genericHttpGet(
@@ -48,8 +54,6 @@ class GitHubClientService {
       m['q'] = "${m['q']}"
           "${filter.followers != null ? " followers:${filter.followers}" : ""}";
     }
-    print(m);
-
     return m;
   }
 }

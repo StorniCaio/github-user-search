@@ -16,8 +16,6 @@ void main() {
     var result = await githubclient.genericHttpGet(
         path: "search/users", queryParameters: {'q': "stornicaio"});
 
-    print(result.body);
-
     assert(result.status &&
         result.code == 200 &&
         result.body.containsKey('items') &&
@@ -26,7 +24,6 @@ void main() {
 
   test('Testing github client service - search username ', () async {
     var result = await githubclient.searchUsername("qwe");
-    print(result.body);
     assert(result.status && (result.body['total_count'] as int) > 0);
   });
 
@@ -35,7 +32,6 @@ void main() {
         "qwe",
         UserFilterModel(
             language: "go", location: "Russia", repos: 10, followers: 5));
-    print(result);
     assert(result.toString() ==
         "{q: qwe language:go location:Russia repos:10 followers:5}");
   });

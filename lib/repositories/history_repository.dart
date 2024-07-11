@@ -20,7 +20,6 @@ class HistoryRepository {
         ),
       );
     } catch (e) {
-      print(e);
       history = [];
     }
   }

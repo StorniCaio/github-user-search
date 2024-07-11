@@ -19,7 +19,6 @@ void main() async {
   await historyRepository.refreshHistoricFromStorage();
 
   test('history repository - chached history', () async {
-    print(historyRepository.history);
     var counter = 0;
     for (HistoryModel h in historyRepository.history) {
       counter = h.usernameSearched == "searchUsername" ? counter + 1 : counter;
@@ -33,7 +32,6 @@ void main() async {
         searchUsername: username,
         filter: UserFilterModel(
             followers: 10, language: "PT", repos: 2, location: "BR"));
-    print(historyRepository.history);
 
     assert(historyRepository.history.any((h) =>
         h.usernameSearched == username &&
