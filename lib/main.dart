@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:github_user_search/repositories/history_repository.dart';
 import 'package:github_user_search/repositories/user_repository.dart';
-import 'package:github_user_search/services/context_service.dart';
+import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/services/github_client_service.dart';
 import 'package:github_user_search/ui/controller/theme_controller.dart';
-import 'package:github_user_search/ui/view/base/root_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,17 +32,16 @@ class MyApp extends StatelessWidget {
               )
             ],
             child: MaterialApp(
-              navigatorKey: GlobalContextService.navigatorKey,
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                primarySwatch: Colors.amber,
-                useMaterial3: true,
-                brightness: ThemeController.instance.darkTheme
-                    ? Brightness.dark
-                    : Brightness.light,
-              ),
-              home: const RootPage(),
-            ),
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                  primarySwatch: Colors.amber,
+                  useMaterial3: true,
+                  brightness: ThemeController.instance.darkTheme
+                      ? Brightness.dark
+                      : Brightness.light,
+                ),
+                onGenerateRoute: (settings) =>
+                    RouteGenerator.generateRoute(settings)),
           );
         });
   }
