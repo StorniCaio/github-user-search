@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_user_search/labels/app_labels.dart';
 import 'package:github_user_search/models/search_model.dart';
+import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/services/model/user_filter_model.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/view/search/filter_component.dart';
@@ -26,6 +27,9 @@ class _SearchPageState extends State<SearchPage> {
       searchModel = SearchModel(
           userSearched: _username,
           filter: searchFilter.hasFilter() ? searchFilter : null);
+
+      Navigator.pushNamed(context, RouteGenerator.result,
+          arguments: searchModel);
 
       Navigator.push(
           context,

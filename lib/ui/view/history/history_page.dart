@@ -3,6 +3,7 @@ import 'package:github_user_search/labels/app_labels.dart';
 import 'package:github_user_search/models/history_model.dart';
 import 'package:github_user_search/models/search_model.dart';
 import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/view/base/error_page.dart';
 import 'package:github_user_search/ui/view/search/search_result_page.dart';
@@ -66,12 +67,9 @@ class _HistoryPageState extends State<HistoryPage> {
                                 history.elementAt(i).usernameSearched ?? "",
                             filter: history.elementAt(i).filter);
 
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SearchResultPage(
-                                      searchModel: searchModel,
-                                    ))).then((_) {
+                        Navigator.pushNamed(context, RouteGenerator.result,
+                                arguments: searchModel)
+                            .then((_) {
                           setState(() {});
                         });
                       },
