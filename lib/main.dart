@@ -3,7 +3,6 @@ import 'package:github_user_search/repositories/history_repository.dart';
 import 'package:github_user_search/repositories/user_repository.dart';
 import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/services/github_client_service.dart';
-import 'package:github_user_search/ui/controller/theme_controller.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,31 +17,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: ThemeController.instance,
-        builder: (context, child) {
-          return MultiProvider(
-            providers: [
-              Provider<IGitHubClientService>(
-                  create: (_) => GitHubClientService()),
-              Provider<IUserRepository>(
-                create: (context) => UserRepository(
-                    githubService: Provider.of<IGitHubClientService>(context,
-                        listen: false)),
-              )
-            ],
-            child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                  primarySwatch: Colors.amber,
-                  useMaterial3: true,
-                  brightness: ThemeController.instance.darkTheme
-                      ? Brightness.dark
-                      : Brightness.light,
-                ),
-                onGenerateRoute: (settings) =>
-                    RouteGenerator.generateRoute(settings)),
-          );
-        });
+    return MultiProvider(
+      providers: [
+        Provider<IGitHubClientService>(create: (_) => GitHubClientService()),
+        Provider<IUserRepository>(
+          create: (context) => UserRepository(
+              githubService:
+                  Provider.of<IGitHubClientService>(context, listen: false)),
+        )
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              primarySwatch: Colors.amber,
+              useMaterial3: true,
+              brightness: Brightness.dark),
+          onGenerateRoute: (settings) =>
+              RouteGenerator.generateRoute(settings)),
+    );
   }
 }
