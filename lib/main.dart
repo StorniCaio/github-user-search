@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/provider/storage_provider.dart';
 import 'package:github_user_search/repositories/user_repository.dart';
 import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/services/github_client_service.dart';
@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  HistoryRepository.instance.refreshHistoricFromStorage();
+  StorageProvider.instance.refreshHistoricFromStorage();
 
   runApp(const MyApp());
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:github_user_search/models/search_model.dart';
 import 'package:github_user_search/models/search_result.dart';
-import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/provider/storage_provider.dart';
 import 'package:github_user_search/repositories/user_repository.dart';
 import 'package:github_user_search/ui/controller/controller_state_enum.dart';
 
 class SearchUserController extends ChangeNotifier {
   final IUserRepository userRepository;
-  HistoryRepository historyRepository = HistoryRepository.instance;
+  StorageProvider historyRepository = StorageProvider.instance;
   late SearchResult searchResult;
   ControllerState state = ControllerState.processing;
 

@@ -3,10 +3,12 @@ import 'package:github_user_search/services/model/user_filter_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-class HistoryRepository {
+class StorageProvider {
   List<HistoryModel> history = [];
 
-  static HistoryRepository instance = HistoryRepository();
+  static StorageProvider instance = StorageProvider._();
+
+  StorageProvider._();
 
   Future<void> refreshHistoricFromStorage() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

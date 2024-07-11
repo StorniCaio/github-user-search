@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:github_user_search/labels/app_labels.dart';
 import 'package:github_user_search/models/history_model.dart';
 import 'package:github_user_search/models/search_model.dart';
-import 'package:github_user_search/repositories/history_repository.dart';
+import 'package:github_user_search/provider/storage_provider.dart';
 import 'package:github_user_search/routes/routes.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/view/base/error_page.dart';
-import 'package:github_user_search/ui/view/search/search_result_page.dart';
 import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -17,7 +16,7 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
-  HistoryRepository historyRepository = HistoryRepository.instance;
+  StorageProvider historyRepository = StorageProvider.instance;
   @override
   Widget build(BuildContext context) {
     var history = historyRepository.history;
