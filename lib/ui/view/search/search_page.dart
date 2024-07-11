@@ -7,7 +7,6 @@ import 'package:github_user_search/ui/view/base/base_page.dart';
 import 'package:github_user_search/ui/view/search/filter_component.dart';
 import 'package:github_user_search/ui/widgets/button_widget.dart';
 import 'package:github_user_search/ui/widgets/text_field_widget.dart';
-import 'package:github_user_search/ui/view/search/search_result_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -30,13 +29,6 @@ class _SearchPageState extends State<SearchPage> {
 
       Navigator.pushNamed(context, RouteGenerator.result,
           arguments: searchModel);
-
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => SearchResultPage(
-                    searchModel: searchModel,
-                  )));
     }
   }
 
