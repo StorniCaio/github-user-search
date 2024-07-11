@@ -19,6 +19,8 @@ class AppLabels {
 
   static const String noUserFound = "No Users Found";
 
-  static String noHistory = "No History";
-  static String fitered = "Filtered";
+  static const String noHistory = "No History";
+  static const String fitered = "Filtered";
+
+  static const String error = "Error. Try Again!";
 }

@@ -21,9 +21,10 @@ class SearchUserController extends ChangeNotifier {
       searchResult =
           SearchResult(searchModel: searchModel, users: userRepository.users);
     } else {
+      state = ControllerState.error;
       SearchResult(searchModel: searchModel, users: []);
     }
-    state = ControllerState.fininhed;
+    state = ControllerState.finished;
     historyRepository.saveToHistoric(
         searchUsername: searchModel.userSearched,
         filter: searchModel.filter,

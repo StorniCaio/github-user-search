@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:github_user_search/labels/app_labels.dart';
 
-class NoHistoryPage extends StatelessWidget {
-  const NoHistoryPage({super.key});
+class ErrorPage extends StatelessWidget {
+  const ErrorPage({super.key, required this.message});
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class NoHistoryPage extends StatelessWidget {
               Expanded(
                 child: Center(
                   child: Text(
-                    AppLabels.noHistory,
+                    message,
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,

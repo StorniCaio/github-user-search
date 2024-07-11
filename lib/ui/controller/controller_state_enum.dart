@@ -1,1 +1,1 @@
-enum ControllerState { error, fininhed, processing }
+enum ControllerState { error, finished, processing }

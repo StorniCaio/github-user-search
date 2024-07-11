@@ -4,7 +4,7 @@ import 'package:github_user_search/models/history_model.dart';
 import 'package:github_user_search/models/search_model.dart';
 import 'package:github_user_search/repositories/history_repository.dart';
 import 'package:github_user_search/ui/view/base/base_page.dart';
-import 'package:github_user_search/ui/view/history/nohistory_.dart';
+import 'package:github_user_search/ui/view/base/error_page.dart';
 import 'package:github_user_search/ui/view/search/search_result_page.dart';
 import 'package:intl/intl.dart';
 
@@ -23,7 +23,9 @@ class _HistoryPageState extends State<HistoryPage> {
     return BasePage(
         title: AppLabels.historyPageTitle,
         body: history.isEmpty
-            ? const NoHistoryPage()
+            ? const ErrorPage(
+                message: AppLabels.noHistory,
+              )
             : ListView.builder(
                 itemCount: history.length,
                 itemBuilder: (BuildContext context, int index) {
